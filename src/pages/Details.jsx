@@ -14,12 +14,13 @@ const Details = ({data,code,findNation}) => {
 
   const nation=data.find(nation=>nation.numericCode === code)
 
-  console.log(data)
+  const {money}=nation.currencies
+
+  console.log(money)
 
   return (
     <div className="dark:bg-[#202c36] min-h-screen dark:text-white" key={data.numericCode}>
-      <Header/>
-      <button onClick={()=>navigate(-1)} className='ml-[4%] flex justify-center items-center gap-2 mt-20 w-32 h-10 dark:bg-[#283844] rounded dark:text-white' >
+      <button onClick={()=>navigate(-1)} className='ml-[4%] flex justify-center items-center gap-2 mt-5 w-32 h-10 dark:bg-[#283844] rounded dark:text-white' >
       {theme==='light'?<img src={backL} alt='moon icon'/>:<img src={backD} alt='sun icon'/>}Back
       </button>
       {<div className='sm:flex justify-between items-center mt-10 mx-[10%] sm:mx-20 gap-8'>
@@ -38,8 +39,8 @@ const Details = ({data,code,findNation}) => {
             </div>
             <div className="mt-5">
               <p><b>Top Level Domain:</b>{nation.topLevelDomain}</p>
-              <p><b>Currencies: </b>{nation.Euro}</p>
-              <p><b>Languages: </b>{nation.languages.map(lang=>lang.name+', ' ) }</p>
+              <p><b>Currencies: </b>{nation.currencies.name}</p>
+              <p className="text-wrap"><b>Languages: </b>{nation.languages.map(lang=>lang.name+', ' ) }</p>
             </div>
           </div>
           <p className="mt-16 sm:flex fle items-center gap-2 text-nowrap">

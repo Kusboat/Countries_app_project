@@ -14,7 +14,6 @@ const Home = ({data, findNation}) => {
 
   return (
     <div className='bg-[#FAFAFA] font-nunito dark:bg-[#202C36]'>
-        <Header/>
         <div className='sm:flex justify-between mt-12 sm:px-20'>
             <SearchBar findNation={findNation}/>
             <Filter filVal={filVal} />

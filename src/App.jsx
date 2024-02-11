@@ -4,6 +4,7 @@ import Details from "./pages/Details"
 import axios from "axios"
 import { useState, useEffect, useContext } from "react"
 import { ThemeContext } from "./components/ThemeProvider"
+import Header from "./components/Header"
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     // Fetch data from your JSON file or API
     const fetchData = async () => {
       try {
-        const response = await axios.get('./src/assets/data.json');
+        const response = await axios.get('../src/assets/data.json');
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -42,8 +43,10 @@ function App() {
 
   return (
     <>
+      <Header/>
+      <Home data={data} findNation={findNation}/>
       <Routes>
-        <Route path="/" element={<Home data={data} findNation={findNation} />}/>
+        {/* <Route path="/" element={<Home  />}/> */}
         <Route path="/details/:nation" element={<Details data={data} code={code} findNation={findNation} />}/>        
       </Routes>
     </>
