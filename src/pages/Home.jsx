@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import CardContainer from '../components/CardContainer'
 import Filter from '../components/Filter'
-import Header from '../components/Header'
 import SearchBar from '../components/SearchBar'
 
 const Home = ({data, findNation}) => {
@@ -14,7 +13,7 @@ const Home = ({data, findNation}) => {
 
   return (
     <div className='bg-[#FAFAFA] font-nunito dark:bg-[#202C36]'>
-        <div className='sm:flex justify-between mt-12 sm:px-20'>
+        <div className='sm:flex justify-between pt-12 sm:px-20'>
             <SearchBar findNation={findNation}/>
             <Filter filVal={filVal} />
         </div>

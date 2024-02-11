@@ -1,25 +1,22 @@
 import Border from "../components/Border";
-import Header from "../components/Header"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import backL from '../assets/call-made.svg'
 import backD from '../assets/call-madeD.svg'
 import { useContext } from "react";
 import { ThemeContext } from "../components/ThemeProvider";
 
-const Details = ({data,code,findNation}) => {
+const Details = ({data, findNation}) => {
+
+  const {country} = useParams()
 
   const navigate=useNavigate();
 
   const {theme}=useContext(ThemeContext)
 
-  const nation=data.find(nation=>nation.numericCode === code)
-
-  const {money}=nation.currencies
-
-  console.log(money)
+  const nation=data.find(nation=>nation.name === country)
 
   return (
-    <div className="dark:bg-[#202c36] min-h-screen dark:text-white" key={data.numericCode}>
+    <div className="dark:bg-[#202c36] min-h-screen pt-5 dark:text-white" key={data.numericCode}>
       <button onClick={()=>navigate(-1)} className='ml-[4%] flex justify-center items-center gap-2 mt-5 w-32 h-10 dark:bg-[#283844] rounded dark:text-white' >
       {theme==='light'?<img src={backL} alt='moon icon'/>:<img src={backD} alt='sun icon'/>}Back
       </button>
@@ -39,7 +36,7 @@ const Details = ({data,code,findNation}) => {
             </div>
             <div className="mt-5">
               <p><b>Top Level Domain:</b>{nation.topLevelDomain}</p>
-              <p><b>Currencies: </b>{nation.currencies.name}</p>
+              <p><b>Currencies: </b>{nation.currencies.code}</p>
               <p className="text-wrap"><b>Languages: </b>{nation.languages.map(lang=>lang.name+', ' ) }</p>
             </div>
           </div>

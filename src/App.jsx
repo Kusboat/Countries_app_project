@@ -1,7 +1,7 @@
 import { Route, Routes, useNavigate } from "react-router-dom"
 import Home from "./pages/Home"
 import Details from "./pages/Details"
-import { useState, useEffect, useContext } from "react"
+import { useEffect, useContext } from "react"
 import { ThemeContext } from "./components/ThemeProvider"
 import Header from "./components/Header"
 import jsonData from './assets/data.json'
@@ -9,21 +9,13 @@ import jsonData from './assets/data.json'
 
 function App() {
 
-  const [data,setData]= useState([])
-  const [code, setCode] = useState("288")
-
   const navigate = useNavigate()
 
-  useEffect(() => {
-    setData(jsonData);
-  }, []);
-
-  console.log(data)
+  const data = jsonData
 
   const findNation = (query) => {
     const country = data.find(nation => query.localeCompare(nation.name, 'en', {sensitivity: 'base'}) === 0 /*nation.name === query*/ )
-    setCode(country.numericCode)
-    navigate(`/details/${country.name}`)
+    navigate(`/Countries_app_project/details/${country.name}`)
   }
 
   const {theme} = useContext(ThemeContext)
@@ -38,7 +30,7 @@ function App() {
       <Header/>
       <Routes>
         <Route path="/Countries_app_project" element={<Home data={data} findNation={findNation} />}/>
-        <Route path="/details/:nation" element={<Details data={data} code={code} findNation={findNation} />}/>        
+        <Route path="/Countries_app_project/details/:country" element={<Details data={data} findNation={findNation} />}/>        
       </Routes>
     </>
   )
